@@ -2,84 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Stark Goals VIP 🌌</title>
+    <title>StarkBet - Suscripciones</title>
     <style>
-        body {
-            background-color: #0a0a23;
-            color: white;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        h1, h2 { color: #00ccff; }
-        .mensaje { font-weight: bold; margin: 15px 0; }
-        .ok { color: #00ff88; }
-        .error { color: #ff4444; }
-
-        table {
-            width: 100%;
-            background: #111;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #444;
-            padding: 10px;
-            text-align: center;
-        }
-        a.btn {
-            background-color: #008CBA;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        form {
-            background-color: #111;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        input[type="text"], input[type="email"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            border: none;
-        }
-        input[type="submit"] {
-            background-color: #00ccff;
-            color: #000;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
+        body { font-family: Arial, sans-serif; background-color: #f3f3f3; padding: 30px; }
+        .plan { border: 1px solid #ccc; padding: 20px; margin-bottom: 15px; border-radius: 8px; background: #fff; }
+        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 6px; }
+        .btn:hover { background: #0056b3; }
+        .ok { color: green; }
+        .error { color: red; }
     </style>
 </head>
 <body>
-    <h1>🌌 Stark Goals VIP 🌌</h1>
-    <p>Accede al sistema profesional de apuestas deportivas con resultados comprobados.</p>
+
+    <h1>🔥 STARKBET - Planes de Suscripción</h1>
 
     <form method="POST">
-        <input type="email" name="correo" placeholder="Tu correo" required>
-        <input type="text" name="codigo" placeholder="Código de descuento (opcional)">
-        <input type="submit" value="Aplicar Código y Ver Precios">
+        <label>Tu correo:</label><br>
+        <input type="email" name="correo" required><br><br>
+
+        <label>Código promocional:</label><br>
+        <input type="text" name="codigo" placeholder="STARKBET"><br><br>
+
+        <button type="submit">Aplicar código</button>
     </form>
 
     {% if mensaje %}
-        <p class="mensaje {{ clase }}">{{ mensaje }}</p>
+        <p class="{{ clase }}">{{ mensaje }}</p>
     {% endif %}
 
-    <h2>💰 Planes disponibles:</h2>
-    <table>
-        <tr><th>Plan</th><th>Duración</th><th>Precio</th><th>Pagar</th></tr>
-        <tr><td>Mensual</td><td>1 mes</td><td>${{ precios["mensual"] }} COP</td><td><a href="{{ links['mensual'] }}" class="btn">Pagar</a></td></tr>
-        <tr><td>Trimestral</td><td>3 meses</td><td>${{ precios["trimestral"] }} COP</td><td><a href="{{ links['trimestral'] }}" class="btn">Pagar</a></td></tr>
-        <tr><td>Semestral</td><td>6 meses</td><td>${{ precios["semestral"] }} COP</td><td><a href="{{ links['semestral'] }}" class="btn">Pagar</a></td></tr>
-        <tr><td>Anual</td><td>12 meses</td><td>${{ precios["anual"] }} COP</td><td><a href="{{ links['anual'] }}" class="btn">Pagar</a></td></tr>
-    </table>
+    <hr>
+
+    {% for nombre, precio in precios.items() %}
+        <div class="plan">
+            <h3>Plan {{ nombre.capitalize() }}</h3>
+            <p><strong>${{ precio }} COP</strong></p>
+            <a class="btn" href="{{ links[nombre] }}" target="_blank">Pagar ahora</a>
+        </div>
+    {% endfor %}
+
+    <hr>
+
+    <h3>📞 ¿Tienes dudas o deseas otro método?</h3>
+    <a class="btn" href="{{ contactos.whatsapp }}" target="_blank">WhatsApp</a>
+    <a class="btn" href="{{ contactos.telegram }}" target="_blank">Telegram</a>
+    <a class="btn" href="{{ contactos.paypal }}" target="_blank">PayPal</a>
+
 </body>
-  </html>
+</html>
