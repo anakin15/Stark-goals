@@ -11,25 +11,25 @@ ARCHIVO_USUARIOS = "codigos_usados.json"
 
 # Precios normales
 precios_base = {
-    "mensual": 65.000,
-    "trimestral": 177.000,
-    "semestral": 390.000,
-    "anual": 790.000
+    "mensual": 65000,
+    "trimestral": 177000,
+    "semestral": 390000,
+    "anual": 790000
 }
 
-# Links de pago
-links_pago = {
+# Links de pago (AstroPay)
+links = {
     "mensual": "https://onetouch.astropay.com/payment?external_reference_id=yQhLPb2z0AxcipNOmAz9PMvcclXU1yU9",
     "trimestral": "https://onetouch.astropay.com/payment?external_reference_id=FIKYIzFSVKBBtyb8nXc5RxBOia5SwsQJ",
     "semestral": "https://onetouch.astropay.com/payment?external_reference_id=dlrDIgquJRYEFAHZkN3wipC3Y8ekQHGV",
     "anual": "https://onetouch.astropay.com/payment?external_reference_id=TByrspBzhDYFcCYSvXoqq8s04YBvb7YO"
 }
 
-# Métodos de contacto
-contactos = {
+# Información de contacto
+contacto = {
     "whatsapp": "https://wa.me/573117776320",
-    "telegram": "https://t.me/Info_skywalker",
-    "paypal": "danielpadilla152018@gmail.com"
+    "telegram": "https://t.me/StarkPadilla",
+    "paypal_correo": "pagostarkbet@gmail.com"
 }
 
 # Funciones para manejo de correos
@@ -68,14 +68,15 @@ def inicio():
             clase = "ok"
             descuento_aplicado = True
 
+    # Formatear precios con puntos
     precios_format = {k: "{:,.0f}".format(v).replace(",", ".") for k, v in precios.items()}
 
     return render_template("index.html",
                            mensaje=mensaje,
                            clase=clase,
                            precios=precios_format,
-                           links=links_pago,
-                           contactos=contactos)
+                           links=links,
+                           contacto=contacto)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=10000, debug=True)
