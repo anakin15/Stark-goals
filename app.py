@@ -11,10 +11,10 @@ ARCHIVO_USUARIOS = "codigos_usados.json"
 
 # Precios normales
 precios_base = {
-    "mensual": 65000,
-    "trimestral": 177000,
-    "semestral": 390000,
-    "anual": 790000
+    "mensual": 65.000,
+    "trimestral": 177.000,
+    "semestral": 390.000,
+    "anual": 790.000
 }
 
 # Links de pago
@@ -28,8 +28,8 @@ links_pago = {
 # Métodos de contacto
 contactos = {
     "whatsapp": "https://wa.me/573117776320",
-    "telegram": "https://t.me/danielskywalker",
-    "paypal": "https://www.paypal.me/tucuenta"
+    "telegram": "https://t.me/Info_skywalker",
+    "paypal": "danielpadilla152018@gmail.com"
 }
 
 # Funciones para manejo de correos
