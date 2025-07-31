@@ -1,64 +1,108 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stark Goals VIP</title>
-  <link rel="icon" href="assets/img/logo.png">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>✨🌌 Stark Goals VIP 🌌✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+    }
+    section {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #00d1b2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .plan {
+      background-color: rgba(0, 0, 0, 0.4);
+      border: 1px solid #00d1b2;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .formulario input, .formulario select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
-
-  <!-- Header -->
-  <header class="bg-black text-white p-4 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <img src="assets/img/logo.png" alt="Stark Goals VIP" class="w-10 h-10 rounded-full">
-      <h1 class="text-xl font-bold">Stark Goals VIP</h1>
+<body>  <header>
+    <h1>✨🌌 Stark Goals VIP 🌌✨</h1>
+  </header>  <section>
+    <h2>¿Qué es Stark Goals VIP?</h2>
+    <p>Una comunidad premium diseñada para los amantes de los pronósticos deportivos, estrategias estadísticas y apuestas inteligentes. Aquí recibirás alertas, análisis de valor, y estrategias exclusivas que aumentarán tu probabilidad de ganar.</p>
+    <a href="#registro" class="btn">Volverme Premium</a>
+  </section>  <section id="registro">
+    <h2>Únete a Stark Goals VIP</h2>
+    <form class="formulario" action="#planes">
+      <input type="text" placeholder="Nombre completo" required>
+      <input type="email" placeholder="Correo electrónico" required>
+      <input type="tel" placeholder="Número de teléfono" required>
+      <input type="text" placeholder="Usuario de Telegram (opcional)">
+      <input type="text" placeholder="Código promocional (si tienes)">
+      <a href="#planes" class="btn">Continuar</a>
+    </form>
+  </section>  <section id="planes">
+    <h2>Planes de Suscripción</h2>
+    <div class="plan">
+      <h3>Plan Mensual</h3>
+      <p><strong>$65.000 COP</strong></p>
+      <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
-    <a href="https://t.me/Info_skywalker" class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">Contactar</a>
-  </header>
-
-  <!-- Portada -->
-  <section class="text-center py-12 px-4 bg-gradient-to-b from-black to-gray-900 text-white">
-    <h2 class="text-3xl font-bold mb-4">Predicciones de alto nivel. Apuesta con confianza.</h2>
-    <p class="text-lg">Planes exclusivos para quienes quieren ganar de verdad con las mejores estadísticas.</p>
-  </section>
-
-  <!-- Planes -->
-  <section class="py-12 px-4">
-    <h2 class="text-2xl font-bold text-center mb-8">Planes disponibles</h2>
-    <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-
-      <!-- Plan Mensual -->
-      <div class="bg-white rounded-xl shadow-lg p-6 text-center">
-        <h3 class="text-xl font-bold mb-2">Plan Mensual</h3>
-        <p class="text-2xl font-bold text-green-600 mb-4">$65.000 COP</p>
-        <a href="https://t.me/Info_skywalker" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Pagar ahora</a>
-      </div>
-
-      <!-- Plan Trimestral -->
-      <div class="bg-white rounded-xl shadow-lg p-6 text-center">
-        <h3 class="text-xl font-bold mb-2">Plan Trimestral</h3>
-        <p class="text-2xl font-bold text-green-600 mb-4">$177.000 COP</p>
-        <a href="https://t.me/Info_skywalker" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Pagar ahora</a>
-      </div>
-
-      <!-- Plan Semestral -->
-      <div class="bg-white rounded-xl shadow-lg p-6 text-center">
-        <h3 class="text-xl font-bold mb-2">Plan Semestral</h3>
-        <p class="text-2xl font-bold text-green-600 mb-4">$390.000 COP</p>
-        <a href="https://t.me/Info_skywalker" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Pagar ahora</a>
-      </div>
-
-      <!-- Plan Anual -->
-      <div class="bg-white rounded-xl shadow-lg p-6 text-center">
-        <h3 class="text-xl font-bold mb-2">Plan Anual</h3>
-        <p class="text-2xl font-bold text-green-600 mb-4">$790.000 COP</p>
-        <a href="https://t.me/Info_skywalker" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Pagar ahora</a>
-      </div>
-
+    <div class="plan">
+      <h3>Plan Trimestral</h3>
+      <p><strong>$177.000 COP</strong></p>
+      <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
-  </section>
-
-</body>
+    <div class="plan">
+      <h3>Plan Semestral</h3>
+      <p><strong>$390.000 COP</strong></p>
+      <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
+    </div>
+    <div class="plan">
+      <h3>Plan Anual</h3>
+      <p><strong>$790.000 COP</strong></p>
+      <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
+    </div>
+  </section>  <footer style="text-align: center; margin-top: 40px; font-size: 0.9rem;">
+    Contacto: danielpadilla152018@gmail.com | WhatsApp: 3117776320 | Telegram: @Info_skywalker
+  </footer></body>
 </html>
