@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planes - Stark Goals VIP</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <a href="index.html"><img src="img/logo.png" alt="Logo Stark Goals" class="logo" /></a>
+  </header>
+
+  <main class="container">
+    <section class="bienvenida">
+      <h2>Hola, <span id="nombreUsuario">Usuario</span></h2>
+      <p>Selecciona el plan que mejor se adapte a ti:</p>
+    </section>
+
+    <section class="planes">
+      <div class="plan">
+        <h3>Plan 1 Mes</h3>
+        <p>Acceso completo al grupo VIP y alertas diarias</p>
+        <p class="precio" id="precioOriginal">$30,000 COP</p>
+        <p class="descuento" id="precioConDescuento"></p>
+
+        <div class="metodos-pago">
+          <p>Métodos de pago:</p>
+          <button onclick="pagarNequi()">Pagar por Nequi</button>
+          <button onclick="pagarDaviplata()">Pagar por Daviplata</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Stark Goals VIP. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
