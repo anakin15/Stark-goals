@@ -1,133 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Métodos de Pago</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f7f7f7;
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <title>Métodos de Pago</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f7f7f7;
+      color: #333;
+    }
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        header img {
-            max-width: 200px;
-        }
+    header img {
+      max-width: 200px;
+    }
 
-        h2 {
-            font-size: 24px;
-            color: #222;
-        }
+    h2 {
+      font-size: 24px;
+      color: #222;
+    }
 
-        .planes {
-            margin-top: 20px;
-        }
+    .codigo {
+      text-align: center;
+      margin-bottom: 25px;
+    }
 
-        .plan {
-            background: #fff;
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            border-left: 5px solid #2c3e50;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+    input[type="text"] {
+      padding: 8px;
+      width: 220px;
+      margin-top: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
 
-        .plan h3 {
-            margin: 0;
-            font-size: 18px;
-        }
+    .planes {
+      margin-top: 20px;
+    }
 
-        .plan .precio {
-            font-size: 20px;
-            color: #27ae60;
-            margin: 10px 0;
-        }
+    .plan {
+      background: #fff;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      border-left: 5px solid #2c3e50;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
 
-        .plan button {
-            background-color: #2980b9;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+    .plan h3 {
+      margin: 0;
+      font-size: 18px;
+    }
 
-        .plan button:hover {
-            background-color: #21618c;
-        }
+    .plan .precio {
+      font-size: 20px;
+      color: #27ae60;
+      margin: 10px 0;
+    }
 
-        .metodos {
-            margin-top: 30px;
-        }
+    .plan .descuento {
+      font-size: 18px;
+      color: #e67e22;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    .plan button {
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
 
-        li {
-            margin-bottom: 10px;
-        }
+    .plan button:hover {
+      background-color: #21618c;
+    }
 
-        a {
-            color: #2980b9;
-            text-decoration: none;
-        }
+    .metodos {
+      margin-top: 30px;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <!-- Aquí va tu logo -->
-        <img src="logo.png" alt="Logo Skywalker Bot">
-        <h2>🎯 Métodos de Pago</h2>
-    </header>
+  <header>
+    <img src="logo.png" alt="Logo Skywalker Bot">
+    <h2>🎯 Métodos de Pago</h2>
+  </header>
 
-    <div class="planes">
-        <div class="plan">
-            <h3>Plan Mensual</h3>
-            <p class="precio">$65.000 COP</p>
-            <button>Pagar ahora</button>
-        </div>
+  <div class="codigo">
+    <label for="codigoPromo">¿Tienes un código promocional?</label><br>
+    <input type="text" id="codigoPromo" placeholder="Ingresa tu código">
+  </div>
 
-        <div class="plan">
-            <h3>Plan Trimestral</h3>
-            <p class="precio">$177.000 COP</p>
-            <button>Pagar ahora</button>
-        </div>
-
-        <div class="plan">
-            <h3>Plan Semestral</h3>
-            <p class="precio">$390.000 COP</p>
-            <button>Pagar ahora</button>
-        </div>
-
-        <div class="plan">
-            <h3>Plan Anual</h3>
-            <p class="precio">$790.000 COP</p>
-            <button>Pagar ahora</button>
-        </div>
+  <div class="planes">
+    <div class="plan" data-precio="65000">
+      <h3>Plan Mensual</h3>
+      <p class="precio">$65.000 COP</p>
+      <p class="descuento"></p>
+      <button>Pagar ahora</button>
     </div>
 
-    <div class="metodos">
-        <h3>💳 Opciones de pago:</h3>
-        <ul>
-            <li>🌐 Astropay</li>
-            <li>📲 WhatsApp: <a href="https://wa.me/573117776320" target="_blank">Habla con Daniel</a></li>
-            <li>📧 Correo PayPal: <strong>danielpadilla152018@gmail.com</strong></li>
-            <li>💵 Paypal: <a href="https://www.paypal.me/skywalkerbot" target="_blank">paypal.me/skywalkerbot</a></li>
-            <li>💬 Telegram: <a href="https://t.me/Info_skywalker" target="_blank">@Info_skywalker</a></li>
-        </ul>
+    <div class="plan" data-precio="177000">
+      <h3>Plan Trimestral</h3>
+      <p class="precio">$177.000 COP</p>
+      <p class="descuento"></p>
+      <button>Pagar ahora</button>
     </div>
+
+    <div class="plan" data-precio="390000">
+      <h3>Plan Semestral</h3>
+      <p class="precio">$390.000 COP</p>
+      <p class="descuento"></p>
+      <button>Pagar ahora</button>
+    </div>
+
+    <div class="plan" data-precio="790000">
+      <h3>Plan Anual</h3>
+      <p class="precio">$790.000 COP</p>
+      <p class="descuento"></p>
+      <button>Pagar ahora</button>
+    </div>
+  </div>
+
+  <div class="metodos">
+    <h3>💳 Opciones de pago:</h3>
+    <ul>
+      <li>🌐 Astropay</li>
+      <li>📲 WhatsApp: <a href="https://wa.me/573117776320" target="_blank">Habla con Daniel</a></li>
+      <li>📧 Correo PayPal: <strong>danielpadilla152018@gmail.com</strong></li>
+      <li>💵 Paypal: <a href="https://www.paypal.me/skywalkerbot" target="_blank">paypal.me/skywalkerbot</a></li>
+      <li>💬 Telegram: <a href="https://t.me/Info_skywalker" target="_blank">@Info_skywalker</a></li>
+    </ul>
+  </div>
+
+  <script>
+    const input = document.getElementById('codigoPromo');
+    const planes = document.querySelectorAll('.plan');
+
+    input.addEventListener('input', async () => {
+      const codigo = input.value.trim().toUpperCase();
+
+      try {
+        const res = await fetch('/codigos_promocionales.json');
+        const codigos = await res.json();
+
+        planes.forEach(plan => {
+          const precioOriginal = parseInt(plan.dataset.precio);
+          const precioP = plan.querySelector('.precio');
+          const descuentoP = plan.querySelector('.descuento');
+
+          if (codigo in codigos) {
+            const porcentaje = codigos[codigo];
+            const nuevoPrecio = Math.floor(precioOriginal * (1 - porcentaje));
+            descuentoP.textContent = `Con descuento: $${nuevoPrecio.toLocaleString()} COP`;
+            precioP.style.textDecoration = 'line-through';
+          } else {
+            descuentoP.textContent = '';
+            precioP.style.textDecoration = 'none';
+          }
+        });
+      } catch (err) {
+        console.error("Error cargando códigos:", err);
+      }
+    });
+  </script>
 
 </body>
-    </html>
+</html>
