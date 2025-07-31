@@ -1,18 +1,51 @@
-<!-- Dentro de donde se muestran los métodos de pago -->
-<div class="metodos">
-  <h3>💳 Métodos de pago</h3>
-  
-  <p><strong>AstroPay:</strong></p>
-  <ul>
-    <li><a href="{{ links['mensual'] }}" target="_blank">Mensual</a></li>
-    <li><a href="{{ links['trimestral'] }}" target="_blank">Trimestral</a></li>
-    <li><a href="{{ links['semestral'] }}" target="_blank">Semestral</a></li>
-    <li><a href="{{ links['anual'] }}" target="_blank">Anual</a></li>
-  </ul>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>StarkBet - Suscripciones</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f3f3f3; padding: 30px; }
+        .plan { border: 1px solid #ccc; padding: 20px; margin-bottom: 15px; border-radius: 8px; background: #fff; }
+        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 6px; }
+        .btn:hover { background: #0056b3; }
+        .ok { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
 
-  <p><strong>PayPal:</strong> Envía el pago al correo:</p>
-  <p style="font-weight: bold; color: darkblue;">{{ contacto['paypal_correo'] }}</p>
+    <h1>🔥 STARKBET - Planes de Suscripción</h1>
 
-  <p><strong>WhatsApp:</strong> <a href="{{ contacto['whatsapp'] }}" target="_blank">Hablar por WhatsApp</a></p>
-  <p><strong>Telegram:</strong> <a href="{{ contacto['telegram'] }}" target="_blank">Ir al canal</a></p>
-</div>
+    <form method="POST">
+        <label>Tu correo:</label><br>
+        <input type="email" name="correo" required><br><br>
+
+        <label>Código promocional:</label><br>
+        <input type="text" name="codigo" placeholder="STARKBET"><br><br>
+
+        <button type="submit">Aplicar código</button>
+    </form>
+
+    {% if mensaje %}
+        <p class="{{ clase }}">{{ mensaje }}</p>
+    {% endif %}
+
+    <hr>
+
+    {% for nombre, precio in precios.items() %}
+        <div class="plan">
+            <h3>Plan {{ nombre.capitalize() }}</h3>
+            <p><strong>${{ precio }} COP</strong></p>
+            <a class="btn" href="{{ links[nombre] }}" target="_blank">Pagar ahora</a>
+        </div>
+    {% endfor %}
+
+    <hr>
+
+    <h3>📞 ¿Tienes dudas o deseas otro método?</h3>
+    <a class="btn" href="{{ contactos.whatsapp }}" target="_blank">WhatsApp</a>
+    <a class="btn" href="{{ contactos.telegram }}" target="_blank">Telegram</a>
+    <a class="btn" href="{{ contactos.paypal }}" target="_blank">PayPal</a>
+
+</body>
+  </html>
