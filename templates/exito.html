@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>¡Pago Registrado!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .mensaje {
+            background-color: white;
+            padding: 30px;
+            margin: auto;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .mensaje h1 {
+            color: #22bb33;
+        }
+
+        .boton-volver {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mensaje">
+        <h1>✅ ¡Pago registrado con éxito!</h1>
+        <p>Gracias por elegir uno de nuestros planes.<br>
+        En breve te contactaremos vía Telegram o WhatsApp.</p>
+        <a class="boton-volver" href="{{ url_for('index') }}">Volver a la página principal</a>
+    </div>
+</body>
+</html>
