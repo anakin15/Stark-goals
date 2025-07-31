@@ -1,21 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Registro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Stark Goals VIP</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <h2>🔐 Registro Premium</h2>
-    <form method="POST">
-        <label>Correo electrónico:</label><br>
-        <input type="email" name="correo" required><br><br>
+  <header class="header">
+    <a href="index.html"><img src="img/logo.png" alt="Logo Stark Goals" class="logo" /></a>
+  </header>
 
-        <label>Código promocional (opcional):</label><br>
-        <input type="text" name="codigo"><br><br>
+  <main class="container">
+    <section class="formulario">
+      <h2>Registro de Usuario</h2>
+      <p>Por favor ingresa tus datos para continuar:</p>
 
-        <label>Teléfono:</label><br>
-        <input type="text" name="telefono" required><br><br>
+      <form id="registroForm">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" required />
 
-        <button type="submit">Siguiente</button>
-    </form>
+        <label for="telefono">Número de teléfono</label>
+        <input type="tel" id="telefono" required />
+
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" required />
+
+        <label for="codigo">Código promocional (opcional)</label>
+        <input type="text" id="codigo" />
+
+        <button type="submit" class="btn-principal">Continuar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Stark Goals VIP. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
