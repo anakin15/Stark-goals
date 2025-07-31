@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Verificar si hay código promocional y aplicar descuento
-  if (promocion && promocion.toLowerCase() === "vipdaniel") {
+  if (promocion && promocion.toLowerCase() === "STARKBET") {
     const precioConDescuentoValor = 20000;
     precioConDescuento.textContent = `Con descuento: $${precioConDescuentoValor.toLocaleString()} COP`;
     precioConDescuento.style.color = "green";
