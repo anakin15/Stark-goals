@@ -11,10 +11,10 @@ ARCHIVO_USUARIOS = "codigos_usados.json"
 
 # Precios normales
 precios_base = {
-    "mensual": 65.000,
-    "trimestral": 177.000,
-    "semestral": 390.000,
-    "anual": 790.000
+    "mensual": 65000,
+    "trimestral": 177000,
+    "semestral": 390000,
+    "anual": 790000
 }
 
 # Links de pago (AstroPay)
@@ -29,7 +29,7 @@ links = {
 contacto = {
     "whatsapp": "https://wa.me/573117776320",
     "telegram": "https://t.me/StarkPadilla",
-    "paypal_correo": "danielpadilla152018@gmail.com"
+    "paypal_correo": "pagostarkbet@gmail.com"
 }
 
 # Funciones para manejo de correos
