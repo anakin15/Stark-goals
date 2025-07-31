@@ -1,9 +1,10 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>✨🌌 Stark Goals VIP 🌌✨</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -55,54 +56,99 @@
       padding: 20px;
       margin-bottom: 20px;
     }
-    .formulario input, .formulario select {
+    .formulario input {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
       border-radius: 8px;
       border: none;
     }
+    .precio-original {
+      text-decoration: line-through;
+    }
+    .precio-descuento {
+      color: #00ff99;
+      font-weight: bold;
+    }
   </style>
 </head>
-<body>  <header>
+<body>
+  <header>
     <h1>✨🌌 Stark Goals VIP 🌌✨</h1>
-  </header>  <section>
+  </header>
+
+  <section>
     <h2>¿Qué es Stark Goals VIP?</h2>
-    <p>Una comunidad premium diseñada para los amantes de los pronósticos deportivos, estrategias estadísticas y apuestas inteligentes. Aquí recibirás alertas, análisis de valor, y estrategias exclusivas que aumentarán tu probabilidad de ganar.</p>
+    <p>Una comunidad premium diseñada para los amantes de los pronósticos deportivos, estrategias estadísticas y apuestas inteligentes.</p>
     <a href="#registro" class="btn">Volverme Premium</a>
-  </section>  <section id="registro">
+  </section>
+
+  <section id="registro">
     <h2>Únete a Stark Goals VIP</h2>
-    <form class="formulario" action="#planes">
-      <input type="text" placeholder="Nombre completo" required>
-      <input type="email" placeholder="Correo electrónico" required>
-      <input type="tel" placeholder="Número de teléfono" required>
-      <input type="text" placeholder="Usuario de Telegram (opcional)">
-      <input type="text" placeholder="Código promocional (si tienes)">
-      <a href="#planes" class="btn">Continuar</a>
+    <form class="formulario" id="registroForm">
+      <input type="text" id="nombre" placeholder="Nombre completo" required />
+      <input type="email" id="correo" placeholder="Correo electrónico" required />
+      <input type="tel" id="telefono" placeholder="Número de teléfono" required />
+      <input type="text" id="telegram" placeholder="Usuario de Telegram (opcional)" />
+      <input type="text" id="promocion" placeholder="Código promocional (si tienes)" />
+      <a href="#planes" class="btn" onclick="guardarDatos()">Continuar</a>
     </form>
-  </section>  <section id="planes">
+  </section>
+
+  <section id="planes">
     <h2>Planes de Suscripción</h2>
+
     <div class="plan">
       <h3>Plan Mensual</h3>
-      <p><strong>$65.000 COP</strong></p>
+      <p><span class="precio-original">$65.000 COP</span></p>
+      <p class="precio-descuento" id="planMensual"></p>
       <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
+
     <div class="plan">
       <h3>Plan Trimestral</h3>
-      <p><strong>$177.000 COP</strong></p>
+      <p><span class="precio-original">$177.000 COP</span></p>
+      <p class="precio-descuento" id="planTrimestral"></p>
       <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
+
     <div class="plan">
       <h3>Plan Semestral</h3>
-      <p><strong>$390.000 COP</strong></p>
+      <p><span class="precio-original">$390.000 COP</span></p>
+      <p class="precio-descuento" id="planSemestral"></p>
       <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
+
     <div class="plan">
       <h3>Plan Anual</h3>
-      <p><strong>$790.000 COP</strong></p>
+      <p><span class="precio-original">$790.000 COP</span></p>
+      <p class="precio-descuento" id="planAnual"></p>
       <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
-  </section>  <footer style="text-align: center; margin-top: 40px; font-size: 0.9rem;">
+  </section>
+
+  <footer style="text-align: center; margin-top: 40px; font-size: 0.9rem;">
     Contacto: danielpadilla152018@gmail.com | WhatsApp: 3117776320 | Telegram: @Info_skywalker
-  </footer></body>
+  </footer>
+
+  <script>
+    function guardarDatos() {
+      localStorage.setItem("nombre", document.getElementById("nombre").value);
+      localStorage.setItem("correo", document.getElementById("correo").value);
+      localStorage.setItem("telefono", document.getElementById("telefono").value);
+      localStorage.setItem("telegram", document.getElementById("telegram").value);
+      localStorage.setItem("promocion", document.getElementById("promocion").value);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const promo = localStorage.getItem("promocion")?.toLowerCase();
+      if (promo === "vipdaniel") {
+        document.getElementById("planMensual").textContent = "Con descuento: $52.000 COP";
+        document.getElementById("planTrimestral").textContent = "Con descuento: $141.600 COP";
+        document.getElementById("planSemestral").textContent = "Con descuento: $312.000 COP";
+        document.getElementById("planAnual").textContent = "Con descuento: $632.000 COP";
+      }
+    });
+  </script>
+</body>
 </html>
