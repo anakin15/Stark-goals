@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gracias por tu compra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00ffcc;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .contacto {
+      margin-top: 40px;
+      font-size: 0.95rem;
+      color: #aaa;
+    }
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+    .boton-telegram {
+      background-color: #0088cc;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .boton-telegram:hover {
+      background-color: #006699;
+    }
+  </style>
+</head>
+<body>
+  <h1>¡Gracias por tu compra, <span id="usuarioGracias"></span>!</h1>
+  <p>Tu acceso será activado en las próximas horas. Nos pondremos en contacto contigo por Telegram o correo.</p>
+  <p>Si tienes alguna duda, no dudes en escribirme directamente.</p>
+
+  <a href="https://t.me/Info_skywalker" target="_blank">
+    <button class="boton-telegram">Escribirme por Telegram</button>
+  </a>
+
+  <div class="contacto">
+    <p>Correo: danielpadilla152018@gmail.com</p>
+    <p>Teléfono: 3117776320</p>
+  </div>
+
+  <script>
+    const nombre = localStorage.getItem('nombre');
+    if (nombre) {
+      document.getElementById("usuarioGracias").textContent = nombre;
+    }
+  </script>
+</body>
+</html>
