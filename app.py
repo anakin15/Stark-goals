@@ -17,19 +17,19 @@ precios_base = {
     "anual": 790000
 }
 
-# Links de pago (AstroPay)
-links = {
+# Links de pago
+links_pago = {
     "mensual": "https://onetouch.astropay.com/payment?external_reference_id=yQhLPb2z0AxcipNOmAz9PMvcclXU1yU9",
     "trimestral": "https://onetouch.astropay.com/payment?external_reference_id=FIKYIzFSVKBBtyb8nXc5RxBOia5SwsQJ",
     "semestral": "https://onetouch.astropay.com/payment?external_reference_id=dlrDIgquJRYEFAHZkN3wipC3Y8ekQHGV",
     "anual": "https://onetouch.astropay.com/payment?external_reference_id=TByrspBzhDYFcCYSvXoqq8s04YBvb7YO"
 }
 
-# Información de contacto
-contacto = {
+# Métodos de contacto
+contactos = {
     "whatsapp": "https://wa.me/573117776320",
-    "telegram": "https://t.me/StarkPadilla",
-    "paypal_correo": "pagostarkbet@gmail.com"
+    "telegram": "https://t.me/danielskywalker",
+    "paypal": "https://www.paypal.me/tucuenta"
 }
 
 # Funciones para manejo de correos
@@ -68,15 +68,14 @@ def inicio():
             clase = "ok"
             descuento_aplicado = True
 
-    # Formatear precios con puntos
     precios_format = {k: "{:,.0f}".format(v).replace(",", ".") for k, v in precios.items()}
 
     return render_template("index.html",
                            mensaje=mensaje,
                            clase=clase,
                            precios=precios_format,
-                           links=links,
-                           contacto=contacto)
+                           links=links_pago,
+                           contactos=contactos)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=10000, debug=True)
