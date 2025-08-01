@@ -65,6 +65,8 @@
     }
     .precio-original {
       text-decoration: line-through;
+      color: #ff9999;
+      display: none;
     }
     .precio-descuento {
       color: #00ff99;
@@ -100,29 +102,29 @@
 
     <div class="plan">
       <h3>Plan Mensual</h3>
-      <p><span class="precio-original">$65.000 COP</span></p>
-      <p class="precio-descuento" id="planMensual"></p>
+      <p class="precio-original" id="originalMensual">$65.000 COP</p>
+      <p class="precio-descuento" id="planMensual">Precio: $65.000 COP</p>
       <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
 
     <div class="plan">
       <h3>Plan Trimestral</h3>
-      <p><span class="precio-original">$177.000 COP</span></p>
-      <p class="precio-descuento" id="planTrimestral"></p>
+      <p class="precio-original" id="originalTrimestral">$177.000 COP</p>
+      <p class="precio-descuento" id="planTrimestral">Precio: $177.000 COP</p>
       <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
 
     <div class="plan">
       <h3>Plan Semestral</h3>
-      <p><span class="precio-original">$390.000 COP</span></p>
-      <p class="precio-descuento" id="planSemestral"></p>
+      <p class="precio-original" id="originalSemestral">$390.000 COP</p>
+      <p class="precio-descuento" id="planSemestral">Precio: $390.000 COP</p>
       <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
 
     <div class="plan">
       <h3>Plan Anual</h3>
-      <p><span class="precio-original">$790.000 COP</span></p>
-      <p class="precio-descuento" id="planAnual"></p>
+      <p class="precio-original" id="originalAnual">$790.000 COP</p>
+      <p class="precio-descuento" id="planAnual">Precio: $790.000 COP</p>
       <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
     </div>
   </section>
@@ -132,6 +134,9 @@
   </footer>
 
   <script>
+    const LIMITE_USOS = 20;
+    const CODIGO_VALIDO = "starkbet";
+
     function guardarDatos() {
       const nombre = document.getElementById("nombre").value;
       const correo = document.getElementById("correo").value;
@@ -145,14 +150,26 @@
       localStorage.setItem("telegram", telegram);
       localStorage.setItem("promocion", promocion);
 
-      // Verificar código y aplicar descuento
-      if (codigoValido(promocion)) {
+      if (codigoValido(promocion) && usosDisponibles()) {
         aplicarDescuento();
+        incrementarUso();
+      } else {
+        alert("Código inválido o ya alcanzó el límite de uso.");
       }
     }
 
     function codigoValido(codigo) {
-      return codigo === "vipdaniel" || codigo === "starkbet";
+      return codigo === CODIGO_VALIDO;
+    }
+
+    function usosDisponibles() {
+      const usos = parseInt(localStorage.getItem("usos_starkbet") || "0");
+      return usos < LIMITE_USOS;
+    }
+
+    function incrementarUso() {
+      const usos = parseInt(localStorage.getItem("usos_starkbet") || "0");
+      localStorage.setItem("usos_starkbet", usos + 1);
     }
 
     function aplicarDescuento() {
@@ -160,11 +177,16 @@
       document.getElementById("planTrimestral").textContent = "Con descuento: $141.600 COP";
       document.getElementById("planSemestral").textContent = "Con descuento: $312.000 COP";
       document.getElementById("planAnual").textContent = "Con descuento: $632.000 COP";
+
+      document.getElementById("originalMensual").style.display = "block";
+      document.getElementById("originalTrimestral").style.display = "block";
+      document.getElementById("originalSemestral").style.display = "block";
+      document.getElementById("originalAnual").style.display = "block";
     }
 
     document.addEventListener("DOMContentLoaded", () => {
       const promo = localStorage.getItem("promocion")?.toLowerCase();
-      if (codigoValido(promo)) {
+      if (codigoValido(promo) && usosDisponibles()) {
         aplicarDescuento();
       }
     });
