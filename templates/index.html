@@ -12,18 +12,22 @@
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
+
     body {
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: white;
       padding: 20px;
     }
+
     header {
       text-align: center;
       margin-bottom: 40px;
     }
+
     header h1 {
       font-size: 2.5rem;
     }
+
     section {
       max-width: 700px;
       margin: auto;
@@ -33,11 +37,13 @@
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       margin-bottom: 40px;
     }
+
     h2 {
       font-size: 1.8rem;
       margin-bottom: 20px;
       text-align: center;
     }
+
     .btn {
       display: inline-block;
       background-color: #00d1b2;
@@ -49,6 +55,7 @@
       font-weight: bold;
       margin-top: 20px;
     }
+
     .plan {
       background-color: rgba(0, 0, 0, 0.4);
       border: 1px solid #00d1b2;
@@ -56,6 +63,7 @@
       padding: 20px;
       margin-bottom: 20px;
     }
+
     .formulario input {
       width: 100%;
       padding: 10px;
@@ -63,11 +71,12 @@
       border-radius: 8px;
       border: none;
     }
+
     .precio-original {
       text-decoration: line-through;
-      color: #ff9999;
       display: none;
     }
+
     .precio-descuento {
       color: #00ff99;
       font-weight: bold;
@@ -103,29 +112,29 @@
     <div class="plan">
       <h3>Plan Mensual</h3>
       <p class="precio-original" id="originalMensual">$65.000 COP</p>
-      <p class="precio-descuento" id="planMensual">Precio: $65.000 COP</p>
-      <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
+      <p class="precio-descuento" id="planMensual">$65.000 COP</p>
+      <a class="btn" id="pagoMensual" href="#">Pagar ahora</a>
     </div>
 
     <div class="plan">
       <h3>Plan Trimestral</h3>
       <p class="precio-original" id="originalTrimestral">$177.000 COP</p>
-      <p class="precio-descuento" id="planTrimestral">Precio: $177.000 COP</p>
-      <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
+      <p class="precio-descuento" id="planTrimestral">$177.000 COP</p>
+      <a class="btn" id="pagoTrimestral" href="#">Pagar ahora</a>
     </div>
 
     <div class="plan">
       <h3>Plan Semestral</h3>
       <p class="precio-original" id="originalSemestral">$390.000 COP</p>
-      <p class="precio-descuento" id="planSemestral">Precio: $390.000 COP</p>
-      <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
+      <p class="precio-descuento" id="planSemestral">$390.000 COP</p>
+      <a class="btn" id="pagoSemestral" href="#">Pagar ahora</a>
     </div>
 
     <div class="plan">
       <h3>Plan Anual</h3>
       <p class="precio-original" id="originalAnual">$790.000 COP</p>
-      <p class="precio-descuento" id="planAnual">Precio: $790.000 COP</p>
-      <a class="btn" href="https://t.me/Info_skywalker">Pagar ahora</a>
+      <p class="precio-descuento" id="planAnual">$790.000 COP</p>
+      <a class="btn" id="pagoAnual" href="#">Pagar ahora</a>
     </div>
   </section>
 
@@ -136,6 +145,14 @@
   <script>
     const LIMITE_USOS = 20;
     const CODIGO_VALIDO = "starkbet";
+    const telegramBaseURL = "https://t.me/Info_skywalker?text=";
+
+    const precios = {
+      mensual: { original: "$65.000 COP", descuento: "$52.000 COP" },
+      trimestral: { original: "$177.000 COP", descuento: "$141.600 COP" },
+      semestral: { original: "$390.000 COP", descuento: "$312.000 COP" },
+      anual: { original: "$790.000 COP", descuento: "$632.000 COP" }
+    };
 
     function guardarDatos() {
       const nombre = document.getElementById("nombre").value;
@@ -150,11 +167,14 @@
       localStorage.setItem("telegram", telegram);
       localStorage.setItem("promocion", promocion);
 
-      if (codigoValido(promocion) && usosDisponibles()) {
-        aplicarDescuento();
-        incrementarUso();
+      if (codigoValido(promocion)) {
+        let usos = parseInt(localStorage.getItem("usos_starkbet") || "0");
+        if (usos < LIMITE_USOS) {
+          aplicarDescuento();
+          localStorage.setItem("usos_starkbet", (usos + 1).toString());
+        }
       } else {
-        alert("Código inválido o ya alcanzó el límite de uso.");
+        restablecerPrecios();
       }
     }
 
@@ -162,33 +182,56 @@
       return codigo === CODIGO_VALIDO;
     }
 
-    function usosDisponibles() {
-      const usos = parseInt(localStorage.getItem("usos_starkbet") || "0");
-      return usos < LIMITE_USOS;
-    }
-
-    function incrementarUso() {
-      const usos = parseInt(localStorage.getItem("usos_starkbet") || "0");
-      localStorage.setItem("usos_starkbet", usos + 1);
-    }
-
     function aplicarDescuento() {
-      document.getElementById("planMensual").textContent = "Con descuento: $52.000 COP";
-      document.getElementById("planTrimestral").textContent = "Con descuento: $141.600 COP";
-      document.getElementById("planSemestral").textContent = "Con descuento: $312.000 COP";
-      document.getElementById("planAnual").textContent = "Con descuento: $632.000 COP";
+      document.getElementById("originalMensual").style.display = "inline";
+      document.getElementById("originalTrimestral").style.display = "inline";
+      document.getElementById("originalSemestral").style.display = "inline";
+      document.getElementById("originalAnual").style.display = "inline";
 
-      document.getElementById("originalMensual").style.display = "block";
-      document.getElementById("originalTrimestral").style.display = "block";
-      document.getElementById("originalSemestral").style.display = "block";
-      document.getElementById("originalAnual").style.display = "block";
+      document.getElementById("planMensual").textContent = "Con descuento: " + precios.mensual.descuento;
+      document.getElementById("planTrimestral").textContent = "Con descuento: " + precios.trimestral.descuento;
+      document.getElementById("planSemestral").textContent = "Con descuento: " + precios.semestral.descuento;
+      document.getElementById("planAnual").textContent = "Con descuento: " + precios.anual.descuento;
+    }
+
+    function restablecerPrecios() {
+      document.getElementById("originalMensual").style.display = "none";
+      document.getElementById("originalTrimestral").style.display = "none";
+      document.getElementById("originalSemestral").style.display = "none";
+      document.getElementById("originalAnual").style.display = "none";
+
+      document.getElementById("planMensual").textContent = precios.mensual.original;
+      document.getElementById("planTrimestral").textContent = precios.trimestral.original;
+      document.getElementById("planSemestral").textContent = precios.semestral.original;
+      document.getElementById("planAnual").textContent = precios.anual.original;
+    }
+
+    function generarMensaje(plan, precio) {
+      const nombre = localStorage.getItem("nombre") || "";
+      const correo = localStorage.getItem("correo") || "";
+      const telefono = localStorage.getItem("telefono") || "";
+      const telegramUser = localStorage.getItem("telegram") || "";
+      return `Hola, quiero suscribirme al plan ${plan.toUpperCase()} por ${precio}. Mis datos: Nombre: ${nombre}, Correo: ${correo}, Teléfono: ${telefono}, Telegram: ${telegramUser}`;
+    }
+
+    function actualizarLinks() {
+      document.getElementById("pagoMensual").href = telegramBaseURL + encodeURIComponent(generarMensaje("Mensual", document.getElementById("planMensual").textContent));
+      document.getElementById("pagoTrimestral").href = telegramBaseURL + encodeURIComponent(generarMensaje("Trimestral", document.getElementById("planTrimestral").textContent));
+      document.getElementById("pagoSemestral").href = telegramBaseURL + encodeURIComponent(generarMensaje("Semestral", document.getElementById("planSemestral").textContent));
+      document.getElementById("pagoAnual").href = telegramBaseURL + encodeURIComponent(generarMensaje("Anual", document.getElementById("planAnual").textContent));
     }
 
     document.addEventListener("DOMContentLoaded", () => {
       const promo = localStorage.getItem("promocion")?.toLowerCase();
-      if (codigoValido(promo) && usosDisponibles()) {
-        aplicarDescuento();
+      if (codigoValido(promo)) {
+        let usos = parseInt(localStorage.getItem("usos_starkbet") || "0");
+        if (usos < LIMITE_USOS) {
+          aplicarDescuento();
+        }
+      } else {
+        restablecerPrecios();
       }
+      actualizarLinks();
     });
   </script>
 </body>
