@@ -81,6 +81,12 @@
       color: #00ff99;
       font-weight: bold;
     }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -96,13 +102,13 @@
 
   <section id="registro">
     <h2>Únete a Stark Goals VIP</h2>
-    <form class="formulario" id="registroForm">
+    <form class="formulario" id="registroForm" onsubmit="event.preventDefault(); guardarDatos();">
       <input type="text" id="nombre" placeholder="Nombre completo" required />
       <input type="email" id="correo" placeholder="Correo electrónico" required />
       <input type="tel" id="telefono" placeholder="Número de teléfono" required />
       <input type="text" id="telegram" placeholder="Usuario de Telegram (opcional)" />
       <input type="text" id="promocion" placeholder="Código promocional (si tienes)" />
-      <a href="#planes" class="btn" onclick="guardarDatos()">Continuar</a>
+      <button type="submit" class="btn">Continuar</button>
     </form>
   </section>
 
@@ -138,7 +144,7 @@
     </div>
   </section>
 
-  <footer style="text-align: center; margin-top: 40px; font-size: 0.9rem;">
+  <footer>
     Contacto: danielpadilla152018@gmail.com | WhatsApp: 3117776320 | Telegram: @Info_skywalker
   </footer>
 
@@ -176,6 +182,8 @@
       } else {
         restablecerPrecios();
       }
+
+      actualizarLinks();
     }
 
     function codigoValido(codigo) {
