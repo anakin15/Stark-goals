@@ -133,20 +133,39 @@
 
   <script>
     function guardarDatos() {
-      localStorage.setItem("nombre", document.getElementById("nombre").value);
-      localStorage.setItem("correo", document.getElementById("correo").value);
-      localStorage.setItem("telefono", document.getElementById("telefono").value);
-      localStorage.setItem("telegram", document.getElementById("telegram").value);
-      localStorage.setItem("promocion", document.getElementById("promocion").value);
+      const nombre = document.getElementById("nombre").value;
+      const correo = document.getElementById("correo").value;
+      const telefono = document.getElementById("telefono").value;
+      const telegram = document.getElementById("telegram").value;
+      const promocion = document.getElementById("promocion").value.trim().toLowerCase();
+
+      localStorage.setItem("nombre", nombre);
+      localStorage.setItem("correo", correo);
+      localStorage.setItem("telefono", telefono);
+      localStorage.setItem("telegram", telegram);
+      localStorage.setItem("promocion", promocion);
+
+      // Verificar código y aplicar descuento
+      if (codigoValido(promocion)) {
+        aplicarDescuento();
+      }
+    }
+
+    function codigoValido(codigo) {
+      return codigo === "vipdaniel" || codigo === "starkbet";
+    }
+
+    function aplicarDescuento() {
+      document.getElementById("planMensual").textContent = "Con descuento: $52.000 COP";
+      document.getElementById("planTrimestral").textContent = "Con descuento: $141.600 COP";
+      document.getElementById("planSemestral").textContent = "Con descuento: $312.000 COP";
+      document.getElementById("planAnual").textContent = "Con descuento: $632.000 COP";
     }
 
     document.addEventListener("DOMContentLoaded", () => {
       const promo = localStorage.getItem("promocion")?.toLowerCase();
-      if (promo === "vipdaniel") {
-        document.getElementById("planMensual").textContent = "Con descuento: $52.000 COP";
-        document.getElementById("planTrimestral").textContent = "Con descuento: $141.600 COP";
-        document.getElementById("planSemestral").textContent = "Con descuento: $312.000 COP";
-        document.getElementById("planAnual").textContent = "Con descuento: $632.000 COP";
+      if (codigoValido(promo)) {
+        aplicarDescuento();
       }
     });
   </script>
