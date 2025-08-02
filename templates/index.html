@@ -36,6 +36,17 @@
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       margin-bottom: 40px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    section.hidden {
+      opacity: 0;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     h2 {
@@ -54,6 +65,7 @@
       text-align: center;
       font-weight: bold;
       margin-top: 20px;
+      cursor: pointer;
     }
 
     .plan {
@@ -94,15 +106,15 @@
     <h1>✨🌌 Stark Goals VIP 🌌✨</h1>
   </header>
 
-  <section>
+  <section id="intro">
     <h2>¿Qué es Stark Goals VIP?</h2>
     <p>Una comunidad premium diseñada para los amantes de los pronósticos deportivos, estrategias estadísticas y apuestas inteligentes.</p>
-    <a href="#registro" class="btn">Volverme Premium</a>
+    <a class="btn" onclick="irAFormulario()">Volverme Premium</a>
   </section>
 
-  <section id="registro">
+  <section id="registro" class="hidden">
     <h2>Únete a Stark Goals VIP</h2>
-    <form class="formulario" id="registroForm" onsubmit="event.preventDefault(); guardarDatos();">
+    <form class="formulario" id="registroForm" onsubmit="event.preventDefault(); guardarDatos(); irAPlanes();">
       <input type="text" id="nombre" placeholder="Nombre completo" required />
       <input type="email" id="correo" placeholder="Correo electrónico" required />
       <input type="tel" id="telefono" placeholder="Número de teléfono" required />
@@ -112,7 +124,7 @@
     </form>
   </section>
 
-  <section id="planes">
+  <section id="planes" class="hidden">
     <h2>Planes de Suscripción</h2>
 
     <div class="plan">
@@ -159,6 +171,20 @@
       semestral: { original: "$390.000 COP", descuento: "$312.000 COP" },
       anual: { original: "$790.000 COP", descuento: "$632.000 COP" }
     };
+
+    function irAFormulario() {
+      document.getElementById("intro").classList.add("hidden");
+      setTimeout(() => {
+        document.getElementById("registro").classList.remove("hidden");
+      }, 400);
+    }
+
+    function irAPlanes() {
+      document.getElementById("registro").classList.add("hidden");
+      setTimeout(() => {
+        document.getElementById("planes").classList.remove("hidden");
+      }, 400);
+    }
 
     function guardarDatos() {
       const nombre = document.getElementById("nombre").value;
@@ -243,4 +269,4 @@
     });
   </script>
 </body>
-</html>
+      </html>
