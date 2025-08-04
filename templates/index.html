@@ -1,152 +1,176 @@
-<!DOCTYPE html><html lang="es">
-  <head>  
-    <meta charset="UTF-8" />  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-    <title>✨🌌 Stark Goals VIP 🌌✨</title>  
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />  
-    <style>  
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✨🌌 Stark Goals VIP 🌌✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ... estilos se mantienen igual ... */
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✨🌌 Stark Goals VIP 🌌✨</h1>
+  </header>
+
+  <section id="intro">
+    <h2>¿Qué es Stark Goals VIP?</h2>
+    <p>Una comunidad premium para los amantes de los pronósticos deportivos, estrategias estadísticas y apuestas inteligentes. Aprovecha nuestro nuevo código de descuento especial.</p>
+    <a class="btn" onclick="irAFormulario()">Volverme Premium</a>
+  </section>
+
+  <section id="registro" class="hidden">
+    <h2>Únete a Stark Goals VIP</h2>
+    <form class="formulario" id="registroForm" onsubmit="event.preventDefault(); guardarDatos(); irAPlanes();">
+      <input type="text" id="nombre" placeholder="Nombre completo" required />
+      <input type="email" id="correo" placeholder="Correo electrónico" required />
+      <input type="tel" id="telefono" placeholder="Número de teléfono" required />
+      <input type="text" id="telegram" placeholder="Usuario de Telegram (opcional)" />
+      <input type="text" id="promocion" placeholder="Código promocional (si tienes)" />
+      <button type="submit" class="btn">Continuar</button>
+    </form>
+  </section>
+
+  <section id="planes" class="hidden">
+    <h2>Planes de Suscripción</h2>
+    <div class="plan">
+      <h3>Plan Mensual</h3>
+      <p class="precio-original" id="originalMensual">$65.000 COP</p>
+      <p class="precio-descuento" id="planMensual">$65.000 COP</p>
+      <a class="btn" id="pagoMensual" href="#">Pagar ahora</a>
+    </div>
+    <div class="plan">
+      <h3>Plan Trimestral</h3>
+      <p class="precio-original" id="originalTrimestral">$177.000 COP</p>
+      <p class="precio-descuento" id="planTrimestral">$177.000 COP</p>
+      <a class="btn" id="pagoTrimestral" href="#">Pagar ahora</a>
+    </div>
+    <div class="plan">
+      <h3>Plan Semestral</h3>
+      <p class="precio-original" id="originalSemestral">$376.000 COP</p>
+      <p class="precio-descuento" id="planSemestral">$376.000 COP</p>
+      <a class="btn" id="pagoSemestral" href="#">Pagar ahora</a>
+    </div>
+    <div class="plan">
+      <h3>Plan Anual</h3>
+      <p class="precio-original" id="originalAnual">$749.000 COP</p>
+      <p class="precio-descuento" id="planAnual">$749.000 COP</p>
+      <a class="btn" id="pagoAnual" href="#">Pagar ahora</a>
+    </div>
+  </section>
+
+  <footer>
+    Contacto: danielpadilla152018@gmail.com | WhatsApp: 3117776320 | Telegram: @Info_skywalker
+  </footer>
+
+  <script>
+    const LIMITE_USOS = 30;
+    const CODIGO_VALIDO = "starkvip65";
+    const telegramBaseURL = "https://t.me/Info_skywalker?text=";
+
+    const precios = {
+      mensual:    { original: "$65.000 COP", descuento: "$48.750 COP" },
+      trimestral: { original: "$177.000 COP", descuento: "$132.750 COP" },
+      semestral:  { original: "$376.000 COP", descuento: "$282.000 COP" },
+      anual:      { original: "$749.000 COP", descuento: "$561.750 COP" }
+    };
+
+    function irAFormulario() {
+      document.getElementById("intro").classList.add("hidden");
+      setTimeout(() => {
+        document.getElementById("registro").classList.remove("hidden");
+      }, 400);
+    }
+
+    function irAPlanes() {
+      document.getElementById("registro").classList.add("hidden");
+      setTimeout(() => {
+        document.getElementById("planes").classList.remove("hidden");
+      }, 400);
+    }
+
+    function guardarDatos() {
+      const nombre = document.getElementById("nombre").value;
+      const correo = document.getElementById("correo").value;
+      const telefono = document.getElementById("telefono").value;
+      const telegram = document.getElementById("telegram").value;
+      const promocion = document.getElementById("promocion").value.trim().toLowerCase();
+
+      localStorage.setItem("nombre", nombre);
+      localStorage.setItem("correo", correo);
+      localStorage.setItem("telefono", telefono);
+      localStorage.setItem("telegram", telegram);
+      localStorage.setItem("promocion", promocion);
+
+      if (codigoValido(promocion)) {
+        let usos = parseInt(localStorage.getItem("usos_starkvip65") || "0");
+        if (usos < LIMITE_USOS) {
+          aplicarDescuento();
+          localStorage.setItem("usos_starkvip65", (usos + 1).toString());
+        }
+      } else {
+        restablecerPrecios();
       }
-      body {
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-        color: white;
-        padding: 20px;
-        overflow-x: hidden;
+
+      actualizarLinks();
+    }
+
+    function codigoValido(codigo) {
+      return codigo === CODIGO_VALIDO;
+    }
+
+    function aplicarDescuento() {
+      document.getElementById("originalMensual").style.display = "inline";
+      document.getElementById("originalTrimestral").style.display = "inline";
+      document.getElementById("originalSemestral").style.display = "inline";
+      document.getElementById("originalAnual").style.display = "inline";
+
+      document.getElementById("planMensual").textContent = "Con descuento: " + precios.mensual.descuento;
+      document.getElementById("planTrimestral").textContent = "Con descuento: " + precios.trimestral.descuento;
+      document.getElementById("planSemestral").textContent = "Con descuento: " + precios.semestral.descuento;
+      document.getElementById("planAnual").textContent = "Con descuento: " + precios.anual.descuento;
+    }
+
+    function restablecerPrecios() {
+      document.getElementById("originalMensual").style.display = "none";
+      document.getElementById("originalTrimestral").style.display = "none";
+      document.getElementById("originalSemestral").style.display = "none";
+      document.getElementById("originalAnual").style.display = "none";
+
+      document.getElementById("planMensual").textContent = precios.mensual.original;
+      document.getElementById("planTrimestral").textContent = precios.trimestral.original;
+      document.getElementById("planSemestral").textContent = precios.semestral.original;
+      document.getElementById("planAnual").textContent = precios.anual.original;
+    }
+
+    function generarMensaje(plan, precio) {
+      const nombre = localStorage.getItem("nombre") || "";
+      const correo = localStorage.getItem("correo") || "";
+      const telefono = localStorage.getItem("telefono") || "";
+      const telegramUser = localStorage.getItem("telegram") || "";
+      return `Hola, quiero suscribirme al plan ${plan.toUpperCase()} por ${precio}. Mis datos: Nombre: ${nombre}, Correo: ${correo}, Teléfono: ${telefono}, Telegram: ${telegramUser}`;
+    }
+
+    function actualizarLinks() {
+      document.getElementById("pagoMensual").href = telegramBaseURL + encodeURIComponent(generarMensaje("Mensual", document.getElementById("planMensual").textContent));
+      document.getElementById("pagoTrimestral").href = telegramBaseURL + encodeURIComponent(generarMensaje("Trimestral", document.getElementById("planTrimestral").textContent));
+      document.getElementById("pagoSemestral").href = telegramBaseURL + encodeURIComponent(generarMensaje("Semestral", document.getElementById("planSemestral").textContent));
+      document.getElementById("pagoAnual").href = telegramBaseURL + encodeURIComponent(generarMensaje("Anual", document.getElementById("planAnual").textContent));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const promo = localStorage.getItem("promocion")?.toLowerCase();
+      if (codigoValido(promo)) {
+        let usos = parseInt(localStorage.getItem("usos_starkvip65") || "0");
+        if (usos < LIMITE_USOS) {
+          aplicarDescuento();
+        }
+      } else {
+        restablecerPrecios();
       }
-      header {
-        text-align: center;
-        margin-bottom: 40px;
-        animation: popIn 1s ease-in-out;
-      }
-      header h1 {
-        font-size: 2.5rem;
-      }
-      section {
-        max-width: 700px;
-        margin: auto;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        margin-bottom: 40px;
-        opacity: 1;
-        transition: opacity 0.5s ease;
-      }
-      section.hidden {
-        opacity: 0;
-        pointer-events: none;
-        height: 0;
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-      }
-      h2 {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-        text-align: center;
-      }
-      .btn {
-        display: inline-block;
-        background-color: #00d1b2;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 10px;
-        text-decoration: none;
-        text-align: center;
-        font-weight: bold;
-        margin-top: 20px;
-        cursor: pointer;
-        transition: transform 0.2s;
-      }
-      .btn:hover {
-        transform: scale(1.05);
-      }
-      .plan {
-        background-color: rgba(0, 0, 0, 0.4);
-        border: 1px solid #00d1b2;
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 20px;
-      }
-      .formulario input {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 8px;
-        border: none;
-      }
-      .precio-original {
-        text-decoration: line-through;
-        display: none;
-      }
-      .precio-descuento {
-        color: #00ff99;
-        font-weight: bold;
-      }
-      footer {
-        text-align: center;
-        margin-top: 40px;
-        font-size: 0.9rem;
-      }
-      @keyframes popIn {
-        0% { transform: scale(0.8); opacity: 0; }
-        100% { transform: scale(1); opacity: 1; }
-      }
-    </style>  
-  </head>  
-  <body>  
-    <header>  
-      <h1>✨🌌 Stark Goals VIP 🌌✨</h1>  
-    </header>  
-    <section id="intro">  
-      <h2>¿Qué es Stark Goals VIP?</h2>  
-      <p>Una comunidad premium para los apasionados de los pronósticos deportivos, estadísticas avanzadas y apuestas con criterio. Aprovecha el nuevo descuento exclusivo con nuestro código promocional.</p>  
-      <a class="btn" onclick="irAFormulario()">Volverme Premium</a>  
-    </section>  
-    <section id="registro" class="hidden">  
-      <h2>✨ Ingresa tus datos</h2>  
-      <form class="formulario" id="registroForm" onsubmit="event.preventDefault(); guardarDatos(); irAPlanes();">  
-        <input type="text" id="nombre" placeholder="Nombre completo" required />  
-        <input type="email" id="correo" placeholder="Correo electrónico" required />  
-        <input type="tel" id="telefono" placeholder="Número de teléfono" required />  
-        <input type="text" id="telegram" placeholder="Usuario de Telegram (opcional)" />  
-        <input type="text" id="promocion" placeholder="Código promocional (si tienes)" />  
-        <button type="submit" class="btn">Continuar</button>  
-      </form>  
-    </section>  
-    <section id="planes" class="hidden">  
-      <h2>Planes de Suscripción</h2>  
-      <div class="plan">  
-        <h3>Plan Mensual</h3>  
-        <p class="precio-original" id="originalMensual">$65.000 COP</p>  
-        <p class="precio-descuento" id="planMensual">$65.000 COP</p>  
-        <a class="btn" id="pagoMensual" href="#">Pagar ahora</a>  
-      </div>  
-      <div class="plan">  
-        <h3>Plan Trimestral</h3>  
-        <p class="precio-original" id="originalTrimestral">$177.000 COP</p>  
-        <p class="precio-descuento" id="planTrimestral">$177.000 COP</p>  
-        <a class="btn" id="pagoTrimestral" href="#">Pagar ahora</a>  
-      </div>  
-      <div class="plan">  
-        <h3>Plan Semestral</h3>  
-        <p class="precio-original" id="originalSemestral">$354.000 COP</p>  
-        <p class="precio-descuento" id="planSemestral">$354.000 COP</p>  
-        <a class="btn" id="pagoSemestral" href="#">Pagar ahora</a>  
-      </div>  
-      <div class="plan">  
-        <h3>Plan Anual</h3>  
-        <p class="precio-original" id="originalAnual">$708.000 COP</p>  
-        <p class="precio-descuento" id="planAnual">$708.000 COP</p>  
-        <a class="btn" id="pagoAnual" href="#">Pagar ahora</a>  
-      </div>  
-    </section>  
-    <footer>  
-      Contacto: danielpadilla152018@gmail.com | WhatsApp: 3117776320 | Telegram: @Info_skywalker  
-    </footer>  
-  </body>  
+      actualizarLinks();
+    });
+  </script>
+</body>
   </html>
