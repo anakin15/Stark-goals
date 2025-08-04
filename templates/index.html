@@ -6,7 +6,97 @@
   <title>✨🌌 Stark Goals VIP 🌌✨</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
-    /* ... estilos se mantienen igual ... */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: popIn 1s ease-in-out;
+    }
+    header h1 {
+      font-size: 2.5rem;
+    }
+    section {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      margin-bottom: 40px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    section.hidden {
+      opacity: 0;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #00d1b2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .plan {
+      background-color: rgba(0, 0, 0, 0.4);
+      border: 1px solid #00d1b2;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .formulario input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+    }
+    .precio-original {
+      text-decoration: line-through;
+      display: none;
+    }
+    .precio-descuento {
+      color: #00ff99;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -16,12 +106,12 @@
 
   <section id="intro">
     <h2>¿Qué es Stark Goals VIP?</h2>
-    <p>Una comunidad premium para los amantes de los pronósticos deportivos, estrategias estadísticas y apuestas inteligentes. Aprovecha nuestro nuevo código de descuento especial.</p>
+    <p>Una comunidad premium diseñada para los amantes de los pronósticos deportivos, estrategias estadísticas y apuestas inteligentes. Únete ahora con un código promocional exclusivo y accede a todas las herramientas VIP.</p>
     <a class="btn" onclick="irAFormulario()">Volverme Premium</a>
   </section>
 
   <section id="registro" class="hidden">
-    <h2>Únete a Stark Goals VIP</h2>
+    <h2>🎁 Únete a Stark Goals VIP</h2>
     <form class="formulario" id="registroForm" onsubmit="event.preventDefault(); guardarDatos(); irAPlanes();">
       <input type="text" id="nombre" placeholder="Nombre completo" required />
       <input type="email" id="correo" placeholder="Correo electrónico" required />
@@ -65,10 +155,9 @@
   </footer>
 
   <script>
-    const LIMITE_USOS = 30;
+    const LIMITE_USOS = 50;
     const CODIGO_VALIDO = "starkvip65";
     const telegramBaseURL = "https://t.me/Info_skywalker?text=";
-
     const precios = {
       mensual:    { original: "$65.000 COP", descuento: "$48.750 COP" },
       trimestral: { original: "$177.000 COP", descuento: "$132.750 COP" },
