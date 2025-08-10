@@ -193,10 +193,10 @@
       localStorage.setItem("promocion", promocion);
 
       if (codigoValido(promocion)) {
-        let usos = parseInt(localStorage.getItem("usos_starkvip65") || "0");
+        let usos = parseInt(localStorage.getItem("usos_ligastop") || "0");
         if (usos < LIMITE_USOS) {
           aplicarDescuento();
-          localStorage.setItem("usos_starkvip65", (usos + 1).toString());
+          localStorage.setItem("usos_ligastop", (usos + 1).toString());
         }
       } else {
         restablecerPrecios();
@@ -251,7 +251,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       const promo = localStorage.getItem("promocion")?.toLowerCase();
       if (codigoValido(promo)) {
-        let usos = parseInt(localStorage.getItem("usos_starkvip65") || "0");
+        let usos = parseInt(localStorage.getItem("usos_ligastop") || "0");
         if (usos < LIMITE_USOS) {
           aplicarDescuento();
         }
